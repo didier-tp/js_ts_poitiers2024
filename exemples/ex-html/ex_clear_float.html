@@ -1,0 +1,71 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="layout.css"/>
+  <title>ex_clear_float</title>
+  <style>
+     .smallWidth { width : 350px; }
+	 .tinyWidth { width : 150px; }
+	 .floatNone { float: none; }
+     .floatLeft { float: left; }
+	 .floatRight { float: right; }
+	 .clearLeft { clear : left; }
+	 .clearRight { clear : right; }
+	 .clearBoth { clear : both; }
+	 .withRedBorder { border-style: solid; border-with : 4px; 
+	                  border-color : red; }
+	 .withBlueBorder { border-style: solid; border-with : 4px; 
+	                  border-color : blue; }
+	 .withGreenBorder { border-style: solid; border-with : 4px; 
+	                  border-color : green; font-weight: bold;}
+	 span { font-style : italic; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+
+<div class="smallWidth withBlueBorder">
+ <div class="floatLeft withRedBorder" >***<br/>float:left;<br/>***</div>
+ <div class="floatRight withRedBorder" >***<br/>float:right;<br/>***</div>
+ <div class="withGreenBorder tinyWidth" >div<br/>without<br/>clear<br/></div>
+</div>
+ <br/>
+ 
+<div class="smallWidth withBlueBorder">
+ <div class="floatLeft withRedBorder" >
+     ***<br/>float:left;<br/>***<br/>***<br/>***
+ </div>
+ <div class="floatRight withRedBorder" >
+    ***<br/>float:right;<br/>***<br/>***<br/>***<br/>***
+ </div>
+ <span> clear:left; signifie dégagé plus bas pour ne pas être sur la même ligne
+        que des éléments flottants à gauche </span>
+ <div class="withGreenBorder tinyWidth clearLeft" >
+    ###<br/>clear:left;<br/>###
+ </div>
+</div>
+<br/>
+
+<div class="smallWidth withBlueBorder">
+ <div class="floatLeft withRedBorder" >
+  ***<br/>float:left;<br/>***<br/>***<br/>***<br/>***<br/>***
+ </div>
+ <div class="floatRight withRedBorder" >
+   ***<br/>float:right;<br/>***<br/>***<br/>***
+ </div>
+ <span> clear:right; signifie dégagé plus bas pour ne pas être sur la même ligne
+        que des éléments flottants à droite </span>
+ <div class="withGreenBorder tinyWidth clearRight" >###<br/>clear:right;<br/>###</div>
+</div>
+<br/>
+
+<div class="smallWidth withBlueBorder">
+ <div class="floatLeft withRedBorder" >***<br/>float:left;<br/>***<br/>***<br/>***</div>
+ <div class="floatRight withRedBorder" >***<br/>float:right;<br/>***<br/>***<br/>***</div>
+ <span> clear:both; signifie dégagé plus bas pour ne pas être sur la même ligne
+        que des éléments flottants à gauche ou à droite </span>
+ <div class="withGreenBorder tinyWidth clearBoth" >###<br/>clear:both;<br/>###</div>
+</div>
+<br/>
+
+</body>
+</html>

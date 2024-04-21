@@ -1,0 +1,32 @@
+_couleurs.scss intégré dans styleExt.scss
+
+éventuelle v1 avec :
+- variables  $couleurFond1 et $couleurTexte1
+
+v2 avec:
+@mixin withGoodContrastHSL($angleTeinteFond)
+affectant pour la couleur de fond la valeur hsl($angleTeinteFond ,70% , 50%);
+affectant pour la couleur du texte la valeur hsl(($angleTeinteFond + 180 ) % 360 ,70% );
+
+v3 (v2 améliorée) avec:
+$TeinteMap : ( "red" :0 , "yellow" : 60 , "green" : 120 ,
+               "cyan"  : 180 , "blue" : 220 , "magenta" : 300  );
+et
+@mixin withGoodContrastHSL($teinteFond)
+comportant
+$angleTeinteFond : 220; /* valeur par defaut si pas trouve dans map */
+@if map-has-key($TeinteMap,$teinteDeFond){
+    $angleTeinteFond : map-get($TeinteMap,$teinteDeFond);
+}
+... + code de la v2 ....
+
+
+==================================================================
+
+
+- configuration h1,h2,h3,h4,h5,h6 dans styleExt.scss
+avec @include withGoodContrastHSL(...);
+
+
+================
+utilisation de h1,h2,h3,h4,h5,h6   sur sp_welcome.html ou .... 

@@ -1,0 +1,33 @@
+.myFlexRowNowrap{
+	display : flex;
+	flex-flow : row nowrap;
+}
+
+.flexItem{
+	flex: 1 1 auto;
+}
+
+.maPublicite {
+	width : 250px;
+	margin : 1em;
+	background-color: white;
+	color : red;
+	padding : 1em;
+	border : 1px solid red ;
+}
+
+
+@media screen and (max-width : 1000px){
+	.siPlaceSuffisante {
+		display : none;
+	}
+}
+
+@media screen and (min-width : 1000px){
+
+	.siPlaceSuffisante {
+		display : block;
+		flex: 0 0 250px;
+	}
+
+}

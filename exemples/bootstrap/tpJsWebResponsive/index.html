@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>tpJsWebResponsiveSansMenuDeroulant</title>
+ <link rel="stylesheet" href="./css/bootstrap.min.css"> 
+ 
+ <link rel="stylesheet" type="text/css" href="css/layout.css" />
+ <link rel="stylesheet" type="text/css" href="css/styles.css" />
+ 
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- for responsive bootstrap on mobile device -->
+ <script src="lib/jquery-3.3.1.min.js"></script>
+ <script src="lib/bootstrap.bundle.min.js"></script>
+
+ <script src="js/my_ajax_util.js"></script>
+ <script src="js/my_switch_div.js"></script>
+ <script src="js/dom_crud_devise.js"></script>
+ <script src="js/calculs.js"></script>
+<script>
+
+
+window.onload=function(){
+		switchSubPart('idWelcomeSubPart')
+}
+</script>
+</head>
+<body>
+   <header class="stickyHeader">
+     <h3 id="appTitle">My-App</h3>
+	  <nav>
+		<input type="button" value="welcome" onclick="switchSubPart('idWelcomeSubPart')" /> -   
+		<input type="button" value="partie a" onclick="switchSubPart('idSubPart_pa',startDomCrudDevise)" /> -
+		<input type="button" value="partie b" onclick="switchSubPart('idSubPart_pb')" /> - 
+	 </nav>
+   </header>
+   <main id="mainContent" class="mainContentUnderStickyHeader mainContentAboveStickyFooter">
+      <section class="container-fluid">
+	    <div id="idWelcomeSubPart" class="defaultSubPart">
+			<div class="row p-0 m-0">
+                <div class="card m-0 p-0 col-12 col-md-6 col-xl-4 small-zoom">
+                  <div class="card-header bg-primary text-white">chat</div>
+                  <div class="card-body"><img class="card-img-top" src="images/chat.jpg"></div>
+                </div>
+                <div class="card m-0 p-0 col-12 col-md-6 col-xl-4 small-zoom">
+                    <div class="card-header bg-primary text-white">tigre</div>
+                    <div class="card-body"><img class="card-img-top" src="images/tigre.jpg"></div>
+                </div>
+                <div class="card m-0 p-0 col-12 col-md-6 col-xl-4 small-zoom">
+                  <div class="card-header bg-primary text-white">colibri</div>
+                  <div class="card-body"><img class="card-img-top" src="images/colibri.jpg"></div>
+                </div>
+                <div class="card m-0 p-0 col-12 col-md-6 col-xl-4 small-zoom">
+                    <div class="card-header bg-primary text-white">cygne</div>
+                    <div class="card-body"><img class="card-img-top" src="images/cygne.jpg"></div>
+                </div>
+                <div class="card m-0 p-0 col-12 col-md-6 col-xl-4 small-zoom">
+                  <div class="card-header bg-primary text-white">rose</div>
+                  <div class="card-body"><img class="card-img-top" src="images/rose.jpg"></div>
+                </div>
+                <div class="card m-0 p-0 col-12 col-md-6 col-xl-4 small-zoom">
+                    <div class="card-header bg-primary text-white">tournesol</div>
+                    <div class="card-body"><img class="card-img-top" src="images/tournesol.jpg"></div>
+                </div>
+            </div>   
+		</div><!-- end of div welcome -->  
+		<div id="idSubPart_pa" class="alternativeSubPart">
+			<h3>CRUD en mémoire via javascript et api DOM</h3>
+			 <!-- Devise : code:EUR , nom=Euro , change=1 -->
+			 <form role="form">
+				<div class="form-group row mb-3">
+			        <label class="control-label col-sm-4 text-sm-right">code:</label>
+					<div class="col-sm-8"> 
+					      <input id="code" type="text" class="form-control" /> 
+				    </div>
+				</div>
+				<div class="form-group row mb-3">
+					<label class="control-label col-sm-4 text-sm-right">nom:</label>
+					<div class="col-sm-8"> 
+					   <input id="nom" type="text" class="form-control" /> 
+					</div>
+				</div>
+				<div class="form-group row mb-3">
+					<label class="control-label col-sm-4 text-sm-right">change:</label> 
+					<div class="col-sm-8"> 
+					  <input id="change" type="text" class="form-control" /> 
+				   </div>
+			    </div>
+				<div class="form-group row mb-3">
+				  <div class="offset-sm-4 col-sm-8">
+					<input type="button" onclick="newDevise()" value="New"></input>
+					<input type="button" id="bntAdd" onclick="ajoutDevise()" value="Add"></input> 
+					<input type="button" id="bntUpdate" onclick="updateDevise()" value="Update"></input>
+					<input type="button" id="bntDelete" onclick="deleteDevise()" value="Delete"></input> 
+				  </div> 
+				</div>
+			</form> 
+			 <h3>liste des Devises<h3>
+			 <table border="1" id="tableDevises">
+			 <thead>
+				  <tr><th>code</th><th>nom</th><th>change</th></tr>
+			  </thead>
+			  <tbody id="bodyTableau">
+				 <!-- <tr id="tr_USD"><td>USD</td><td>Dollar</td><td>1.1</td></tr> -->
+				</tbody>
+			</table>
+			</div> <!-- end of div partie A -->  
+			<div id="idSubPart_pb" class="alternativeSubPart">
+			  <div class="m-2 p-1">
+				<ul class="nav nav-pills"> <!-- nav-tabs or nav-pills -->
+					<li class="nav-item"><a class="nav-link active" href="#id_tab_addition" data-toggle="tab">addition</a></li>
+					<li class="nav-item" ><a class="nav-link" href="#id_tab_tva" data-toggle="tab">calcul tva</a></li>
+			   </ul>
+				<div class="tab-content">
+					<div id="id_tab_addition" class="tab-pane show active container-fluid p-1 border border-primary">
+								<label>a:</label><input id="txtA" /><br/>
+								<label>b:</label><input id="txtB" /><br/>
+								<input type="button" value="addition" 
+									onclick="calculAdd()"/><br/>
+								<label>a+b: </label> <span id="resAdd"></span>
+					</div>
+					<div id="id_tab_tva" class="tab-pane container-fluid p-1 border border-primary">
+								<label>ht:</label><input id="txtHt" /><br/>
+								<label>taux tva (%):</label><input id="txtTauxTvaPct" /><br/>
+								<input type="button" value="calculer tva et ttc" 
+										onclick="calculTvaEtTtc()"/><br/>
+								<label>tva: </label> <span id="spanTva"></span><br/>
+								<label>ttc: </label> <span id="spanTtc"></span><br/>
+					</div>
+				</div>  <!-- end of div tab-content --> 
+			  </div> <!-- end of div avec marges -->  	
+	        </div> <!-- end of div partie B -->  
+	  </section>
+   </main>
+   <footer class="stickyFooter">
+	  <h4>pied de page (liens, mentions légales)</h4>
+   </footer>
+</body>
+
+</html>

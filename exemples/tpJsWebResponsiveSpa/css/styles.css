@@ -1,0 +1,57 @@
+@import "common.css"; /* à mettre au début du fichier pour que l'import soit effectif */
+
+.enEvidence {
+  font-weight : bold;
+  color : red;
+}
+
+tbody tr:nth-child(2n) {
+  color: black;
+  background-color: white;
+  }
+
+tbody tr:nth-child(2n+1) {
+  color: white;
+  background-color: black;
+  }
+
+thead th {
+  background-color: yellow;
+  }
+
+p { font-size: 1.6em ; }
+
+/* alignement basic (pas responsive): */
+label.simpleAlign { width:8em;  display : inline-block;  }
+
+.f-form-group-wrap{
+	display : flex;
+	flex-flow : row wrap;
+}
+
+label.f-align { width:12em;  display : inline-block;
+                margin-left: 0.3em;
+                flex: 0 0 12em; 
+              }
+
+.f-align{
+  margin-left: 0.3em;
+	flex: 1 1 auto;
+}
+
+.f-max-size{
+	width: 98%;
+}
+
+.c-fieldset {
+    padding:0.5em;
+    margin:0.5em;
+    border-width: 2px; 
+    border-style: solid;
+    border-color: black;
+  }
+ .c-legend {
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+  }

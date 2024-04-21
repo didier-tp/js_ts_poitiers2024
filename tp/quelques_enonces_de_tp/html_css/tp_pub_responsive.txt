@@ -1,0 +1,31 @@
+au sein de index.html (de tpJsWebResponsiveSpa)
+ajouter un paneau latéral (à droite) qui ne s'affichera que sur un écran assez large ( >= 1000px).
+Ce panneau comportera du texte et/ou une image de publicité .
+On pourra (entre autres solutions) s'appuyer sur les "media-query css" et sur des "flex-box" .
+
+Exemple de structure possible (du coté html):
+....
+<link rel="stylesheet" type="text/css" href="css/selonPlace.css" />
+...
+<main id="mainContent" class="mainContentUnderStickyHeader ....">
+      <div class="myFlexRowNowrap">
+		  <section class="flexItem">
+			<div id="idAlternativeSubPart">...</div>
+		  </section>
+		  <section class="siPlaceSuffisante">
+   		       <div class="maPublicite">
+				  texte<br/>
+				  ou<br/>
+				  image <br/>
+				  de <br/>
+				  pub<br/>
+				  ...<br/>
+				</div>
+		  </section>
+	</div>
+</main>
+...
+
+---> coder au mieux selonPlace.css
+Exemple de largeur pour .publicite ---> 250px 
+...

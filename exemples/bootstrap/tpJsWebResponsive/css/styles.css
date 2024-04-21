@@ -1,0 +1,51 @@
+.defaultSubPart{
+	display : block;
+}
+
+.alternativeSubPart{
+	display : none;
+}
+
+/* for automatic dropdown in bootstrap 4 navbar 
+   with class="dropdown-menu mt-0" , dont forget mt-0 */
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+p {
+  font-size: 1.6em;
+}
+
+
+label.simpleAlign {
+  width: 8em;
+  display: inline-block;
+  text-align: right;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(2n) {
+  color: black;
+  background-color: rgb(226, 220, 220);
+}
+
+tbody tr:nth-child(2n+1) {
+  color: white;
+  background-color: rgb(49, 6, 90);
+}
+
+thead th {
+  background-color: rgb(0, 255, 76);
+}
+
+.small-zoom {
+  transform: scale(0.96);
+  transition: 0.6s;
+}
+
+.small-zoom:hover {
+  transform: scale(1);
+  border-width: 4px;
+  border-style: solid;
+  border-color: rgb(41, 12, 121);
+}

@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>tpJsWebResponsive</title>
+ <link rel="stylesheet" href="./css/bootstrap.min.css"> 
+ 
+ <link rel="stylesheet" type="text/css" href="css/layout.css" />
+ <link rel="stylesheet" type="text/css" href="css/styles.css" />
+ 
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- for responsive bootstrap on mobile device -->
+ <script src="lib/jquery-3.3.1.min.js"></script>
+ <script src="lib/bootstrap.bundle.min.js"></script>
+
+ <script src="js/my_ajax_util.js"></script>
+ <script src="js/my_switch_div.js"></script>
+<script>
+
+
+window.onload=function(){
+		switchSubPart('idWelcomeSubPart')
+}
+</script>
+</head>
+<body>
+   <header class="stickyHeader">
+      <!-- <h3 id="appTitle">My-App</h3> -->
+		<nav class="navbar navbar-expand-sm bg-light navbar-light">
+		 <button class="navbar-toggler" type="button" 
+		data-toggle="collapse" data-target="#nav-content" 
+		aria-controls="nav-content" aria-expanded="false" 
+		aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Brand -->
+		<a class="navbar-brand" href="#" onclick="switchSubPart('idWelcomeSubPart')">MyApp</a>
+
+		<!-- Links 
+		NB: data-toggle="collapse" data-target=".navbar-collapse.show"
+		for automatic menu hide when click (small width)
+		-->
+		<div class="collapse navbar-collapse" id="nav-content">   
+		 <ul class="navbar-nav">
+			<li class="nav-item">
+			  <a class="nav-link" href="#" data-toggle="collapse" data-target=".navbar-collapse.show" onclick="switchSubPart('idSubPart_pa')">partieA</a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="#" data-toggle="collapse" data-target=".navbar-collapse.show" onclick="switchSubPart('idSubPart_pb')">partieB</a>
+			</li>
+			<li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+		Autres
+		</a>
+			<div class="dropdown-menu mt-0" aria-labelledby="Preview">
+			<a class="dropdown-item" href="#" data-toggle="collapse" data-target=".navbar-collapse.show" onclick="switchSubPart('idSubPart_pa')">partie A</a>
+			<a class="dropdown-item" href="#" data-toggle="collapse" data-target=".navbar-collapse.show" onclick="switchSubPart('idSubPart_pb')">partie B</a>
+			<!-- <li role="separator" class="divider"></li> -->
+			
+			</div>
+			</li>
+		</ul>   
+		</div>
+	</nav>
+   </header>
+   <main id="mainContent" class="mainContentUnderStickyHeader mainContentAboveStickyFooter">
+      <section class="container-fluid">
+	    <div id="idWelcomeSubPart" class="defaultSubPart">
+		 Welcome ...
+		</div>
+		<div id="idSubPart_pa" class="alternativeSubPart">
+		 pa ...
+		</div>
+		<div id="idSubPart_pb" class="alternativeSubPart">
+		 pb ...
+		</div>
+	  </section>
+   </main>
+   <footer class="stickyFooter">
+	  <h4>pied de page (liens, mentions légales)</h4>
+   </footer>
+</body>
+
+</html>

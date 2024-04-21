@@ -1,0 +1,49 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="layout.css"/>
+  <title>ex_float</title>
+  <style>
+     .smallWidth { width : 350px; }
+	 .floatNone { float: none; }
+     .floatLeft { float: left; }
+	 .floatRight { float: right; }
+	 .withRedBorder { border-style: solid; border-with : 4px; 
+	                  border-color : red; font-weight: bold;}
+	 .withBlueBorder { border-style: solid; border-with : 4px; 
+	                  border-color : blue; }
+  </style>
+</head>
+<body>
+
+<div class="smallWidth withBlueBorder">
+<div class="floatNone withRedBorder" >***<br/>float:none;<br/>***</div>
+<span>La propriété float indique qu'un élément doit être retiré du flux normal 
+	et doit être placé sur le côté droit ou sur le côté gauche de son conteneur. </span>
+</div>
+<br/>
+
+<div class="smallWidth withBlueBorder">
+ <div class="floatLeft withRedBorder" >***<br/>float:left;<br/>***</div>
+	<span>La propriété float indique qu'un élément doit être retiré du flux normal 
+	et doit être placé sur le côté droit ou sur le côté gauche de son conteneur. </span>
+</div>
+<br/>
+
+<div class="smallWidth withBlueBorder">
+  <div class="floatRight withRedBorder" >***<br/>float:right;<br/>***</div>
+	<span>Le texte et les autres éléments en ligne (inline) entoureront alors l'élément flottant.</span>
+	<span>L'élément est retiré du flux normal de la page mais s'inscrit toujours dans le flux 
+	(contrairement au positionnement absolu).</span>
+</div>
+<br/>
+
+<div class="smallWidth withBlueBorder">
+ <div class="floatLeft withRedBorder" >***<br/>float:left;<br/>***</div>
+ <div class="floatRight withRedBorder" >***<br/>float:right;<br/>***</div>
+	<span>La propriété float indique qu'un élément doit être retiré du flux normal 
+	et doit être placé sur le côté droit ou sur le côté gauche de son conteneur. </span>
+</div>
+
+
+</body>
+</html>

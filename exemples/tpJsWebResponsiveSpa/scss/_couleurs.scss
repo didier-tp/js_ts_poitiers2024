@@ -1,0 +1,21 @@
+
+/*
+V2:
+@mixin withGoodContrastHSL($angleTeinteFond ,$s : 70%  , $l : 50% ){
+    background-color: hsl($angleTeinteFond ,$s , $l);
+    color : hsl( ($angleTeinteFond + 180 ) %360 ,$s , $l);
+}
+*/
+
+/* V3*/
+$TeinteMap : ( "red" :0 , "yellow" : 60 , "green" : 120 ,
+               "cyan"  : 180 , "blue" : 220 , "magenta" : 300  );
+
+@mixin withGoodContrastHSL($teinteDeFond , $s : 70% , $l : 50%){
+    $angleTeinteFond : 220; /* valeur par defaut si pas trouve dans map */
+    @if map-has-key($TeinteMap,$teinteDeFond){
+        $angleTeinteFond : map-get($TeinteMap,$teinteDeFond);
+    }
+    background-color: hsl($angleTeinteFond ,$s , $l);
+    color : hsl( ($angleTeinteFond + 180 ) % 360 ,$s , $l);
+}
