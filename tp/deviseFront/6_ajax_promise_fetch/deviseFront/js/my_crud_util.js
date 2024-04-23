@@ -3,6 +3,8 @@
 // du comportement "CRUD" ou bien "CRUD+AJAX"
 //************** GENERIC CRUD ********
 
+//pour l'instant, api fetch utilisée que sur partie POST
+
 var selectedRow = null;
 var selectedObject = null;
 
@@ -68,6 +70,8 @@ function deleteSelected(){
 	}
 }
 
+/*
+//V1 (without fetch api)
 function addNew(){	
 	let objectJs = objectFromInput();
 	if(!canDoAction("add" , objectJs))return;
@@ -77,6 +81,20 @@ function addNew(){
 		console.log("responseJson="+responseJson);
 		refreshAll(); //pour rafraîchir le tableau avec objet ajouté
 	},basicErrorCallback);         
+}
+*/
+
+//V2 via API fetch sur partie POST
+function addNew(){	
+	let objectJs = objectFromInput();
+	if(!canDoAction("add" , objectJs))return;
+	let wsUrl = getWsBaseUrl();   
+	fetchJsonResponseJsDataAfterPostJs(wsUrl,objectJs)
+	.then((postedObjectJs)=>{
+		console.log("postedObjectJs (ajouté coté serveur)="+JSON.stringify(postedObjectJs));
+		refreshAll(); //pour rafraîchir le tableau avec objet ajouté
+	})
+	.catch(err=>{basicErrorCallback(err);});       
 }
 
 

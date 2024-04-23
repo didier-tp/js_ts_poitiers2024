@@ -1,11 +1,12 @@
 "use strict";
 //fonctions utilitaires pour appels ajax via api fetch
 
-function fetchJsonResponseJsData(url) {
+function fetchJsonResponseJsData(url,options) {
 	return new Promise((resolve, reject) => {
-		fetch(url)
+		fetch(url,options)
 			.then((response) => {
-				if (response.status !== 200) {
+				if (response.status !== 200 && response.status !== 201
+				     && response.status !== 204) {
 					//pas ok/200 
 					var errString = 'Problem. Status Code: ' + response.status;
 					response.text()
@@ -25,4 +26,20 @@ function fetchJsonResponseJsData(url) {
 			})
 			.catch((err) => { console.log('Fetch Error :-S', err); reject(err); });
 	});
+}
+
+function fetchJsonResponseJsDataAfterPostJson(url,jsonDataToSend) {
+	let options = {
+		method: 'POST' ,
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+			},
+		body : jsonDataToSend
+		};
+	return fetchJsonResponseJsData(url,options);
+}
+
+function fetchJsonResponseJsDataAfterPostJs(url,jsDataToSend) {
+	return fetchJsonResponseJsDataAfterPostJson(url,JSON.stringify(jsDataToSend));
 }

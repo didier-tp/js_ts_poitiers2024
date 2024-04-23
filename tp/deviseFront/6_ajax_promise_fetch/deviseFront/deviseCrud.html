@@ -2,12 +2,14 @@
     <head>
         <title>deviseCrud</title>
         <link href="./css/styles.css" rel="stylesheet" />
-		<script src="js/my_ajax_util.js"></script>
-		<script src="js/my_crud_util.js"></script>
+		<script src="js/my_ajax_util.js"></script><!-- actuellement pour parties GET/PUT/DELETE -->
+		<script src="js/my_fetch_util.js"></script><!-- actuellement pour partie POST -->
+		<script src="js/my_crud_util.js"></script><!-- là ou fecth est utilisée sur partie POST -->
         <script src="js/deviseCrud.js"></script>
     </head>
     <body>
         <h1>devises</h1>
+		<h3>api fetch pour l'instant utilisée sur sur partie POST</h4>
         <!-- nb id="inputId" for my_crud_util.js -->
 	code: <input id="inputId" /> (ex: USD , EUR) <br/>
 	nom: <input id="inputName" /> (ex: Dollar , Euro) <br/>
