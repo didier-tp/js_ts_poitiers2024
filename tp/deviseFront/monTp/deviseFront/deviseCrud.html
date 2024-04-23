@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>deviseCrud</title>
+        <link href="./css/styles.css" rel="stylesheet" />
+        <script src="js/deviseCrud.js"></script>
+    </head>
+    <body>
+        <h1>devises</h1>
+        <!-- nb id="inputId" for my_crud_util.js -->
+	code: <input id="inputId" /> (ex: USD , EUR) <br/>
+	nom: <input id="inputName" /> (ex: Dollar , Euro) <br/>
+	change: <input id="inputChange" /> <br/>
+
+	<button id="btnAdd">add</button> &nbsp;
+	<button id="btnUpdate" class="whenSelected">update</button>&nbsp;
+	<button id="btnReset" >reset</button> &nbsp;
+	<button id="btnDelete" class="whenSelected">delete</button>
+	
+	<hr/>
+    <span id="spanMsg"></span>
+    <hr/>
+	<button id="btnRefreshAll">refresh all devises</button>
+    <table border="1">
+	   <thead>
+		<tr><th>code</th><th>nom</th><th>change</th></tr>
+	   </thead>
+	   <tbody id="table_body">
+		   <!-- <tr><td>EUR</td><td>Euro</td><td>1.0</td></tr> -->
+	   </tbody>
+	</table>
+	<hr/>
+	<a href="./index.html">retour vers index.html</a> <br/>
+    </body>
+</html>

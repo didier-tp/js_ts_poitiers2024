@@ -1,0 +1,104 @@
+Serie de TPs progressifs autour de JS (Api DOM , CRUD sur "Devise" en mémoire , puis avec appels ajax)
+======================================================================================================
+
+0.présentation)
+--------------
+Cette série de TPs servira à coder une petite application permettant de:
+   - manipuler des devises monétaires au format suivant:
+            [{"name":"Euro","change":1,"code":"EUR"},
+             {"name":"Dollar","change":1.1,"code":"USD"},
+             {"name":"Livre","change":0.9,"code":"GBP"},
+             {"name":"Yen","change":123.7,"code":"JPY"}...]
+   - avec une page d'accueil index.html permettant de naviguer vers conversion.html (cenversion de monnaies)
+                                                                 et deviseCrud.html (formulaire "CRUD" sans puis avec synchronisation "serveur" via Ajax) 
+
+1.preparation)
+-------------- 
+créer (from scratch, à partir de zéro) , une nouvelle appli frontEnd "html+css+js" de nom "deviseFront" 
+avec comme structure initiale:
+index.html
+conversion.html
+deviseCrud.html
+css/styles.css
+js/my_ajax_util.js
+js/my_crud_util.js
+js/conversion.js
+js/deviseCrud.js
+
+Tous ces fichiers (quasi-vides au début) seront complétés au fur et à mesure de l'avancement de la série de Tps
+
+2.debut deviseCrud)
+------------------
+a) au sein de deviseCrud.html , placer :
+   - "en haut" un formulaire de saisie avec les champs "code:" , "name:" et "change:" (id = "inputId" , "inputName" , "inputChange" )
+   - juste en dessous , une series de boutons poussoirs "reset" , "add" , "update" , "delete" (id = "btnReset" , "btnAdd" , "btnUpdate" , "btnDelete")
+   - ensuite cette partie :
+       <span id="spanMsg"></span>
+       <hr/>
+	<button id="btnRefreshAll">refresh all devises</button>
+   - "en bas" un tableau de devises avec les colonnes "code" , "name" et "change" (avec une partie <tbody id="table_body"></tbody>)
+
+b) au sein de js/deviseCrud.js (à associer à la page HTML de même nom),
+   coder :
+    - une fonction "initDataSet()" qui sera appelée dès le chargement de la page et qui va initialiser une variable globale
+       "devises" (de type tableau d'objets "Devise") avec les valeurs en exemples de la phase "0.présentation" 
+    - une fonction "loadDataInHtmlTable()" a également appeler dès le chargement de la page
+    - une fonction "onSelectRow()" qui sera appelée lors d'un "click" sur une ligne du tableau.
+      cette fonction va :
+        * initialiser les variables globales selectedRow , selectedId et selectedObject en fonction du choix de la ligne sélectionnée.
+        * changer certains styles CSS pour la ligne sélectionnée change d'apparence (ex: texte en bleu)
+        * recopier les valeurs de la ligne sélectionnée dans les différents champs du formulaire .
+
+  NB: on pourra librement (re-)structurer ce code en s'appuyant sur d'éventuelles sous fonctions réutilisables
+   (ex: objectFromInput() retournant un objet devise en fonction des valeurs saisies dans le formulaire
+    et inversement displayObject(obj) qui affiche dans le formulaire toutes les valeurs de l'objet devise passé en paramètre )
+
+3. suite deviseCrud)
+-------------------
+  toujours en s'appuyant (temporairement) sur une simple liste de devises en mémoire, coder successivement les fonctionnalités suivantes:
+     - reset : remise à blanc de toutes les zones de saisies en s'appuyant sur selectedObject = blankObject()
+              où blankObject() est une fonction qui créer une instance avec toutes les parties à 0 ou "" , ...
+     - add : ajout d'une nouvelle devise dans la liste globale .devises et rafraîchissement du tableau html + selectedObject réinitialisé via blankObject()
+     - update : modification de la ligne sélectionnée en recopiant les valeurs saisies dans le formulaire dans l'un des objets de la liste .devises
+                et via un rafraîchissement du tableau html
+     - delete : suppression de la ligne sélectionnée (si pas null/undefined) à la fois dans .devises et dans le tableau HTML .
+
+NB: on pourra librement (re-)structurer ce code en s'appuyant sur d'éventuelles sous fonctions réutilisables
+    que l'on pourra éventuellement placer (ou déplacer) dans le fichier réutilisable my_crud_util.js
+
+4. appel ajax simple "conversion") via XMLHttpRequest
+--------------------------------
+a) dans conversion.html:
+   <input id="inputMontant" ... , <select id="selectSourceCode"  ... et id="selectTargetCode", ... 
+   <button id="btnConvert" .... ,  <span id="spanMsg" ....
+b) 
+   appeler https://www.d-defrance.fr/tp/devise-api/public/devise en mode GET
+   et remplir les options possibles des listes déroulantes "selectSourceCode" et "selectTargetCode" avec le resultats du WS REST appelé
+c)
+   URL à du WS REST à appeler en mode GET : https://www.d-defrance.fr/tp/devise-api/public/convert?source=EUR&target=USD&amount=50
+   type de réponse JSON retournée: {"amount":50,"source":"EUR","target":"USD","result":55.00000000000001}
+   - effectuer un appel ajax en s'appuyant sur une URL basée sur une template string (entre quotes inversées et avec ${sourceCode} , ...) selon les valeurs saisies
+   - dans la callback en cas de succès , extraire la sous partie .result de la réponse JSON et utiliser l'api DOM pour actualiser la zone .spanMsg
+
+5. appels ajax en mode CRUD (POST,GET,PUT,DELETE)
+-------------------------------
+  restructurer le code du fichier js/deviseCrud.js en effectuant plein d'appels ajax en mode GET,POST,PUT et DELETE
+  de manière à synchroniser les valeurs de la page HTML vis à vis des valeurs d'un serveur (backend avec api REST) en arrière plan
+  URL de base du WS REST gérant les devises: https://www.d-defrance.fr/tp/devise-api/public/devise 
+
+NB: on pourra librement (re-)structurer le code nécessaire en s'appuyant sur d'éventuelles sous fonctions réutilisables
+    que l'on pourra éventuellement placer (ou déplacer ou ajuster) dans le fichier réutilisable my_crud_util.js
+
+6. certains appels ajax codés via "Promise" + api fetch)
+----------------
+  Recoder (au moins partiellement en mode GET) certains des appels ajax précédents en s'apuyant sur :
+    - des "Promise" de javascript
+    - l'api "fetch"
+    - éventuellement sur async/await de javascript >= 2017
+
+  OU bien 
+
+  appeler un WS REST via "Promise" + "api fetch" + async/await dans une petite application prise en charge par nodeJs
+
+
+
