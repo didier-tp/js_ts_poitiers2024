@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>pageWithForm</title>
+        <link href="./css/styles.css" rel="stylesheet" />
+        <script src="js/pageWithForm.js"></script>
+    </head>
+    <body>
+        <h1>page with form (verify , submit) </h1>
+        <!-- ici action="index.html" en tp/cas_ecole 
+             sur vrai projet action="xxx.php ou xxx.jsp ou xxx.asp ou autres" -->
+        <form action="index.html" mode="GET"
+            onsubmit="return verifForm(this)">
+            prenom: <input type="text" name="prenom" /> <br/>
+            nom: <input type="text" name="nom" /> <br/>
+            age: <!-- <input type="number" name="age" /> --> 
+                 <input type="text" name="age" /><br/>
+            <button type="submit">submit</button>
+        </form>
+        <hr/>
+        <span id="spanMsg"></span>
+        <hr/>
+	    <a href="./index.html">retour vers index.html</a> <br/>
+    </body>
+</html>
