@@ -1,12 +1,45 @@
 "use strict";
 //conversion de devises
+
+/*
+function fetchAsJsData(url){
+  return new Promise((resolve,reject)=>{
+    fetch(url)
+      .then((response)=>{
+          if(response.status !== 200 && response.status !==201){
+               reject("bad response , status=" + response.status);
+        }else{
+              response.json().then((jsData)=> {resolve(jsData);})
+                             .catch((err)=> {reject(err);});
+        }
+       })
+        .catch((err)=> {reject(err);})
+    });
+}
+*/
+
+async function fetchAsJsData(url){
+/*try{*/
+    const response =  await fetch(url);
+    if(response.status !== 200 && response.status !==201){
+        throw "bad response , status=" + response.status;
+    }else{
+       return response.json();
+    }
+
+  /*
+  } catch(err){
+    throw err;
+  }*/
+}
+
 window.onload=()=>{
     chercherDevises();
     document.getElementById("btnConvert")
             .addEventListener("click",
                               ()=>{ effectuerConversion(); });
 }
-
+/*
 function  effectuerConversion(){
     let baseUrl = "https://www.d-defrance.fr/tp/devise-api/public/convert";
     let montant = document.getElementById("inputMontant").value ;
@@ -24,6 +57,47 @@ function  effectuerConversion(){
           errCallback
         );
 }
+*/
+/*
+function  effectuerConversion(){
+  let baseUrl = "https://www.d-defrance.fr/tp/devise-api/public/convert";
+  let montant = document.getElementById("inputMontant").value ;
+  let sourceCode = document.getElementById("selectSourceCode").value ;
+  let targetCode = document.getElementById("selectTargetCode").value ;
+  let wsUrl = `${baseUrl}?amount=${montant}&source=${sourceCode}&target=${targetCode}`;
+  console.log("wsURL="+wsUrl)
+ 
+  fetchAsJsData(wsUrl)
+ .then( (jsResConv) => {
+     //NB: le résultat de response.json() est déjà au format js (pas besoin JSON.parse())
+     console.log("convertJsonResponse="+JSON.stringify(jsResConv));
+      document.getElementById("spanMsg").innerHTML=
+              "<b>" + jsResConv.result+ "</b>";
+ })
+ .catch((err)=>{ console.log(err); 
+                document.getElementById("spanMsg").innerHTML= err })
+}
+*/
+
+async function  effectuerConversion(){
+ try{
+  let baseUrl = "https://www.d-defrance.fr/tp/devise-api/public/convert";
+  let montant = document.getElementById("inputMontant").value ;
+  let sourceCode = document.getElementById("selectSourceCode").value ;
+  let targetCode = document.getElementById("selectTargetCode").value ;
+  let wsUrl = `${baseUrl}?amount=${montant}&source=${sourceCode}&target=${targetCode}`;
+  console.log("wsURL="+wsUrl)
+
+  const jsResConv= await fetchAsJsData(wsUrl);
+  console.log("convertJsonResponse="+JSON.stringify(jsResConv));
+  document.getElementById("spanMsg").innerHTML=
+          "<b>" + jsResConv.result+ "</b>";
+ } catch(err){
+  console.log(err); 
+  document.getElementById("spanMsg").innerHTML= err
+ }
+}
+
 
 function  errCallback(err){
     console.log(err);
@@ -40,7 +114,7 @@ function  fillSelectWithDeviseList(selectId,listeDevisesJs){
     selectElt.appendChild(optionElt);
    }
 }
-
+/*
 function  chercherDevises(){
     let wsUrl = "https://www.d-defrance.fr/tp/devise-api/public/devise";
     makeAjaxGetRequest(wsUrl ,
@@ -52,4 +126,26 @@ function  chercherDevises(){
           },
           errCallback
         );
+}
+*/
+
+function  chercherDevises(){
+  let wsUrl = "https://www.d-defrance.fr/tp/devise-api/public/devise";
+ fetch(wsUrl)
+ .then((response)=>{
+     if(response.status !== 200 && response.status !==201){
+         return Promise.reject("bad response , status=" + response.status);
+     }else{
+       return response.json();
+     }
+ })
+ .then( (jsDevises) => {
+     //NB: le résultat de response.json() est déjà au format js (pas besoin JSON.parse())
+     console.log("devisesJsonResponse="+JSON.stringify(jsDevises));
+     fillSelectWithDeviseList("selectSourceCode",jsDevises);
+     fillSelectWithDeviseList("selectTargetCode",jsDevises);
+ })
+ .catch((err)=>{ console.log(err); 
+                document.getElementById("spanMsg").innerHTML= err })
+  
 }
