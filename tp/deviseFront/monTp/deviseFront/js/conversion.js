@@ -78,7 +78,7 @@ function  effectuerConversion(){
                 document.getElementById("spanMsg").innerHTML= err })
 }
 */
-
+/*
 async function  effectuerConversion(){
  try{
   let baseUrl = "https://www.d-defrance.fr/tp/devise-api/public/convert";
@@ -97,6 +97,34 @@ async function  effectuerConversion(){
   document.getElementById("spanMsg").innerHTML= err
  }
 }
+*/
+
+async function  effectuerConversion(){
+  try{
+   let baseUrl = "https://www.d-defrance.fr/tp/devise-api/public/devise";
+   let montant = document.getElementById("inputMontant").value ;
+   let sourceCode = document.getElementById("selectSourceCode").value ;
+   let targetCode = document.getElementById("selectTargetCode").value ;
+   let wsUrl1 = `${baseUrl}/${sourceCode}`;
+   let wsUrl2 = `${baseUrl}/${targetCode}`;
+   console.log("wsURL1="+wsUrl1);console.log("wsURL2="+wsUrl2);
+/*
+   const deviseSource= await fetchAsJsData(wsUrl1);
+   const deviseTarget= await fetchAsJsData(wsUrl2);
+*/
+
+   const [ deviseSource,deviseTarget ]= 
+       await Promise.all ([fetchAsJsData(wsUrl1) ,fetchAsJsData(wsUrl2)]);
+
+
+   const montantConverti = montant * deviseTarget.change / deviseSource.change;
+   document.getElementById("spanMsg").innerHTML=
+           "<i>" + montantConverti+ "</i>";
+  } catch(err){
+   console.log(err); 
+   document.getElementById("spanMsg").innerHTML= err
+  }
+ }
 
 
 function  errCallback(err){
