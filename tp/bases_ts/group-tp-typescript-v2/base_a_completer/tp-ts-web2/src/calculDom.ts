@@ -16,8 +16,7 @@ window.addEventListener("load", function(){
 
 /*
 dans calcul.html
- <script src="./js/calculs.js"></script>
- <script src="./js/calculDom.js"></script>
+ <script src="./js/calculDom.js" type="module"></script>
  dans tsconfig.json
   "module": "none"
 */
