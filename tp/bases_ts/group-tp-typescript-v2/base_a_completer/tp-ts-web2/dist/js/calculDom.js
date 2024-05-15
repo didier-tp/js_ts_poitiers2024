@@ -1,5 +1,5 @@
-//import { addition } from "./calculs";
-import { addition } from "./calculs.js";
+//import { addition } from "./calculs"; //en pur typescript
+import { addition } from "./calculs.js"; //ajustement temporaire (sans webpack)
 window.addEventListener("load", function () {
     var _a;
     (_a = document.querySelector('#btnAdd')) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () {
@@ -14,8 +14,7 @@ window.addEventListener("load", function () {
 });
 /*
 dans calcul.html
- <script src="./js/calculs.js"></script>
- <script src="./js/calculDom.js"></script>
+ <script src="./js/calculDom.js" type="module"></script>
  dans tsconfig.json
   "module": "none"
 */ 

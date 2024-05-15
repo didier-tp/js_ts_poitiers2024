@@ -1,4 +1,4 @@
-//import { addition } from "./calculs"; //en pure typescript
+//import { addition } from "./calculs"; //en pur typescript
 import { addition } from "./calculs.js"; //ajustement temporaire (sans webpack)
 
 window.addEventListener("load", function(){
