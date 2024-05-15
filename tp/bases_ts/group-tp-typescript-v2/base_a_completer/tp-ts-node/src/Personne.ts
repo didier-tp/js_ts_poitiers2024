@@ -11,9 +11,14 @@ class Personne{
     }
     */
 
+    /*public*/ humeur : string = "bonne humeur";
+
     constructor(public numero:number=0,
                 public nom:string="?",
                 private _age:number=0){
+                    if(this._age <0) {
+                        this.age=0; //+ ... 
+                    }
     }
 
     public get age(){ 
@@ -35,6 +40,19 @@ class Personne{
     }
 }
 
+class Employe extends Personne {
+    constructor(numero:number=0,
+        nom:string="?",
+        private _salaire:number=2500){
+            super(numero,nom);
+        }
+}
+
+let e1 = new Employe();
+console.log("e1=" + JSON.stringify(e1));
+let e2 = new Employe(2,"employe2",3000);
+console.log("e2=" + JSON.stringify(e2));
+
 let p1 = new Personne();
 console.log(`p1=Personne[age=${p1.age},nom=${p1.nom},numero=${p1.numero}]`);
 p1.incrementerAge();
@@ -47,7 +65,7 @@ console.log("p1="+JSON.stringify(p1));//affiche p1={"numero":12,"nom":"toto","_a
 p1.age = 54;
 console.log("p1="+JSON.stringify(p1));
 
-const p2=new Personne(2,"titi" , 33);
+const p2=new Personne(2,"titi" , -33);
 console.log("p2="+JSON.stringify(p2));
 
 
