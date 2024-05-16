@@ -21,6 +21,10 @@ class Personne{
                     }
     }
 
+    public afficher():void{
+        console.log(`Personne nom=${this.nom} numero=${this.numero} age=${this.age}`);
+    }
+
     public get age(){ 
         return this._age;
     }
@@ -46,12 +50,18 @@ class Employe extends Personne {
         private _salaire:number=2500){
             super(numero,nom);
         }
+
+        public afficher():void{
+            super.afficher(); //afficher la partie "Personne d'un employe"
+            console.log(`... cette Personne est un employe avec salaire=${this._salaire} `);
+        }
 }
 
 let e1 = new Employe();
 console.log("e1=" + JSON.stringify(e1));
 let e2 = new Employe(2,"employe2",3000);
 console.log("e2=" + JSON.stringify(e2));
+e2.afficher();
 
 let p1 = new Personne();
 console.log(`p1=Personne[age=${p1.age},nom=${p1.nom},numero=${p1.numero}]`);
@@ -68,4 +78,14 @@ console.log("p1="+JSON.stringify(p1));
 const p2=new Personne(2,"titi" , -33);
 console.log("p2="+JSON.stringify(p2));
 
+//polymorphisme:
+let tabPers : Personne[] = [];
+tabPers.push(e1);
+tabPers.push(p1);
+tabPers.push(e2);
+
+for(const p of tabPers){
+    console.log("");
+    p.afficher(); //polymorphisme
+}
 
