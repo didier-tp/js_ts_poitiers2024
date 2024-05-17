@@ -1,6 +1,8 @@
 référentiel git (doc , tps , solutions) pour les formations javascript et typescript de avril et mai 2024
 ============
 https://github.com/didier-tp/js_ts_poitiers2024
+et
+https://github.com/didier-mycontrib/tp_typescript
 ===========
 mode opératoire conseillé:
 --------

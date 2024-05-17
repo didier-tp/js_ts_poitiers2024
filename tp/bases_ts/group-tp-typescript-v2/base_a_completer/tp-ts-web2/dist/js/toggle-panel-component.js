@@ -1,5 +1,18 @@
 "use strict";
-class TogglePanelComponent extends HTMLElement {
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+function myCustomElement(componentName) {
+    return function (constructeur) {
+        customElements.define(componentName, constructeur);
+        //constructeur.prototype.defineComponentName = ()=> componentName;
+        console.log(">>> decorateur myCustomElement , componentName=" + componentName);
+    };
+}
+let TogglePanelComponent = class TogglePanelComponent extends HTMLElement {
     constructor(label = "TogglePanelComponent", toggleP = false) {
         super();
         this.label = label;
@@ -76,6 +89,9 @@ class TogglePanelComponent extends HTMLElement {
                 myIconCollapse.style.display = this.toggleP ? 'inline-block' : 'none';
         });
     }
-}
-customElements.define("toggle-panel-component", TogglePanelComponent);
+};
+TogglePanelComponent = __decorate([
+    myCustomElement("toggle-panel-component")
+], TogglePanelComponent);
+//customElements.define("toggle-panel-component", TogglePanelComponent);
 //# sourceMappingURL=toggle-panel-component.js.map

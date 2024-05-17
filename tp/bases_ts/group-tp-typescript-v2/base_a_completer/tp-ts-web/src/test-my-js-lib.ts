@@ -1,7 +1,7 @@
-/*
+
 /// <reference path = "../dist/lib/d.ts/my-js-lib.d.ts" />
-*/
-/*
+
+
 function log_essai_Circle(){
     console.log("log_essai_Circle ...")
     
@@ -18,8 +18,6 @@ function log_essai_Circle(){
     let s : number;
     s=calculerSurfaceCercle(c2);
     console.log("surface de c2=" + s);
-    
     }
-*/
 
     

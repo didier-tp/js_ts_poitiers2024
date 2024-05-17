@@ -1,3 +1,14 @@
+function myCustomElement(componentName : string){
+
+  return function (constructeur :Function){
+    customElements.define(componentName, <any>constructeur);
+    //constructeur.prototype.defineComponentName = ()=> componentName;
+      console.log(">>> decorateur myCustomElement , componentName=" + componentName);
+  }
+
+}
+
+@myCustomElement("toggle-panel-component")
 class TogglePanelComponent extends HTMLElement {
 
     componentCssTemplateString /* : string */ = "";
@@ -88,4 +99,4 @@ class TogglePanelComponent extends HTMLElement {
   
   }
   
-  customElements.define("toggle-panel-component", TogglePanelComponent);
+  //customElements.define("toggle-panel-component", TogglePanelComponent);

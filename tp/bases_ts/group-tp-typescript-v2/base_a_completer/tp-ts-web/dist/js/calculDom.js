@@ -15,5 +15,7 @@ window.addEventListener("load", function () {
 dans calcul.html
  <script src="./js/calculs.js"></script>
  <script src="./js/calculDom.js"></script>
+ dans tsconfig.json
+  "module": "none"
 */ 
 //# sourceMappingURL=calculDom.js.map
